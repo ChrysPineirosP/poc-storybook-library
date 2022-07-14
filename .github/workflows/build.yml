@@ -1,0 +1,23 @@
+name: build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Installing Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '12.22.12'
+      - run: npm install -g @angular/cli@11.2.5
+      - run: npm install
+      - run: npm run build poc-storybook-lib -—prod
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
+        with:
+          semantic_version: 19.0.3
+          working_directory: ./dist/poc-storybook-lib
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
