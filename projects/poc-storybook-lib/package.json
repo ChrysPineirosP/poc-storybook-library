@@ -1,7 +1,7 @@
 {
   "name": "poc-storybook-library",
   "private": false,
-  "version": "1.0.1",
+  "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^11.2.14",
     "@angular/core": "^11.2.14"
